@@ -1,6 +1,6 @@
 /**
  * @file app.js
- * @brief 동아마이스터고 C언어 3회차 수행평가 실습 웹사이트 인터랙션 스크립트
+ * @brief 동아마이스터고 C언어 3회차 수행평가 핵심 이론 및 명령어 실습 스크립트
  */
 
 document.addEventListener('DOMContentLoaded', () => {
