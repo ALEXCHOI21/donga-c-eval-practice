@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동아마이스터고 C언어 3회차 수행평가 실습 마스터</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-dark">
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-group">
+                <span class="badge-school">동아마이스터고</span>
+                <h1 class="logo-title">C언어 수행평가 3회차 <span>완전 정복 실습 가이드</span></h1>
+            </div>
+            <div class="header-actions">
+                <button id="themeToggleBtn" class="btn-theme-toggle" title="화면 테마 변경">
+                    <span class="icon-theme">🌓</span> <span class="theme-text">테마 전환</span>
+                </button>
+            </div>
+        </div>
+        <div class="progress-bar-container">
+            <div id="learningProgressBar" class="progress-bar-fill"></div>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>학습 로드맵</h3>
+                <span class="progress-percent" id="progressPercent">0% 완료</span>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" data-step="0">
+                    <span class="step-num">Step 0</span>
+                    <span class="step-label">수행평가 규칙 & VS 세팅</span>
+                </button>
+                <button class="nav-item" data-step="1">
+                    <span class="step-num">Step 1</span>
+                    <span class="step-label">출력(printf)과 주석</span>
+                </button>
+                <button class="nav-item" data-step="2">
+                    <span class="step-num">Step 2</span>
+                    <span class="step-label">입력(scanf_s)과 &amp; 연산자</span>
+                </button>
+                <button class="nav-item" data-step="3">
+                    <span class="step-num">Step 3</span>
+                    <span class="step-label">관계 연산자 (참과 거짓)</span>
+                </button>
+                <button class="nav-item" data-step="4">
+                    <span class="step-num">Step 4</span>
+                    <span class="step-label">조건 분기 (if ~ else)</span>
+                </button>
+                <button class="nav-item" data-step="5">
+                    <span class="step-num">Step 5</span>
+                    <span class="step-label">종합 실전 프로젝트 (도전 과제)</span>
+                </button>
+                <button class="nav-item nav-simulator" data-step="sim">
+                    <span class="step-num">LIVE</span>
+                    <span class="step-label">가상 C언어 콘솔 시뮬레이터</span>
+                </button>
+                <button class="nav-item nav-checklist" data-step="check">
+                    <span class="step-num">CHECK</span>
+                    <span class="step-label">6대 감점 방지 체크리스트</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <p>💡 단순 암기는 NO!</p>
+                <p>원리를 이해하면 100점입니다.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- STEP 0 -->
+            <section id="step-0" class="step-section active">
+                <div class="section-card">
+                    <div class="card-badge">STEP 0 · 기초 환경 설정</div>
+                    <h2>수행평가 개요 및 Visual Studio 프로젝트 생성 규격</h2>
+                    <p class="section-desc">
+                        시험 시작 전 프로젝트 설정 실수로 <strong>-6점 이상 감점</strong>되는 학생들이 많습니다. 시험 전 아래 3가지 환경 설정 규칙을 반드시 숙지하세요.
+                    </p>
+
+                    <div class="info-grid">
+                        <div class="info-box danger">
+                            <h4>❌ 흔히 하는 치명적 실수</h4>
+                            <ul>
+                                <li>프로젝트명을 마음대로 <code>test</code>나 <code>project1</code>으로 작성</li>
+                                <li>내 문서나 임의 폴더에 저장하여 찾지 못함</li>
+                                <li>C++ 소스 파일(<code>.cpp</code>)로 생성하여 C문법 감점</li>
+                            </ul>
+                        </div>
+                        <div class="info-box success">
+                            <h4>✅ 수행평가 만점 규격</h4>
+                            <ul>
+                                <li><strong>프로젝트명</strong>: <code>동마고10101홍길동</code> (학번+성명)</li>
+                                <li><strong>저장 위치</strong>: <strong>바탕화면 (Desktop)</strong></li>
+                                <li><strong>소스 파일명</strong>: <code>수행평가3.c</code> (반드시 <strong>.c</strong> 확장자 직접 입력)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="guide-box">
+                        <h3>🛠️ Visual Studio 30초 생성 순서 가이드</h3>
+                        <ol class="step-list">
+                            <li><strong>새 프로젝트 만들기</strong> 클릭 &rarr; <strong>C++ 빈 프로젝트</strong> 선택 후 [다음]</li>
+                            <li><strong>프로젝트 이름</strong>에 <code>동마고10101성명</code> 입력</li>
+                            <li><strong>위치</strong>는 [찾아보기]를 눌러 <strong>바탕화면</strong> 선택 후 [만들기]</li>
+                            <li>오른쪽 솔루션 탐색기 &rarr; <strong>소스 파일</strong> 우클릭 &rarr; <strong>추가</strong> &rarr; <strong>새 항목</strong></li>
+                            <li>이름 칸에 <code>수행평가3.c</code> 입력 (⚠️ <code>.cpp</code>를 지우고 <code>.c</code>로 직접 수정 필수!)</li>
+                        </ol>
+                    </div>
+
+                    <div class="quiz-box" data-quiz="q0">
+                        <div class="quiz-title">❓ 퀴즈로 확인하기</div>
+                        <p>수행평가 3회차 소스 파일명을 만들 때 올바른 이름은 무엇일까요?</p>
+                        <div class="quiz-options">
+                            <button class="quiz-btn" onclick="checkQuiz('q0', 0)">수행평가3.cpp</button>
+                            <button class="quiz-btn" onclick="checkQuiz('q0', 1)" data-correct="true">수행평가3.c</button>
+                            <button class="quiz-btn" onclick="checkQuiz('q0', 2)">동마고수행평가.c</button>
+                        </div>
+                        <div class="quiz-feedback" id="q0-feedback"></div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-next" onclick="goToStep(1)">다음 단계로 이동 (Step 1: printf & 주석) &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 1 -->
+            <section id="step-1" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">STEP 1 · 입출력 기초</div>
+                    <h2>화면 출력(printf)과 주석(Comment) 작성법</h2>
+                    <p class="section-desc">
+                        수행평가 조건4("코딩시 주석을 입력하시오")와 조건6("결과화면 띄어쓰기, 디자인 일치")을 달성하는 핵심 기초입니다.
+                    </p>
+
+                    <div class="concept-card">
+                        <h3>1. 주석(Comment)이란?</h3>
+                        <p>컴파일러가 기계어로 번역하지 않고 건너뛰는 <strong>프로그래머를 위한 설명글</strong>입니다. 코드의 목적과 변수 의미를 기록합니다.</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span>C언어 주석 문법</span>
+                                <button class="btn-copy" onclick="copyCode('code-step1-comment')">코드 복사</button>
+                            </div>
+                            <pre><code id="code-step1-comment">// 이것은 한 줄 주석입니다. (설명 한 줄)
+
+/*
+ * 이것은 여러 줄 주석입니다.
+ * 작성자: 1학년 1반 홍길동
+ * 기능: 점수 입력 및 합격 판정
+ */</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3>2. 입력 유도 프롬프트(Prompt) 출력 주의점</h3>
+                        <p>
+                            사용자에게 입력을 요청할 때는 <strong>줄바꿈(<code>\n</code>)을 넣지 않아야</strong> 입력 커서가 콜론(<code>:</code>) 바로 옆에 위치합니다!
+                        </p>
+                        <div class="comparison-grid">
+                            <div class="code-diff wrong">
+                                <h5>❌ 잘못된 예 (줄바꿈이 생겨 다음 줄에 입력됨)</h5>
+                                <pre><code>printf("성적 입력 하세요:\n");</code></pre>
+                            </div>
+                            <div class="code-diff correct">
+                                <h5>✅ 올바른 예 (콜론 옆에 바로 입력됨)</h5>
+                                <pre><code>printf("성적 입력 하세요:");</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span>Step 1 실습 코드 (step1_printf_comment.c)</span>
+                            <button class="btn-copy" onclick="copyCode('code-step1')">코드 복사</button>
+                        </div>
+                        <pre><code id="code-step1">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    // 작성자 정보 및 과제 설명 주석 (조건 4 충족)
+    /*
+     * 학번: 10101  이름: 홍길동
+     * 과제: C언어 입력 및 연산자 실습
+     */
+
+    // 줄바꿈 없이 입력 프롬프트 출력 (조건 6 양식 준수)
+    printf("성적 입력 하세요:");
+
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-prev" onclick="goToStep(0)">&larr; 이전</button>
+                        <button class="btn-next" onclick="goToStep(2)">다음 단계로 이동 (Step 2: scanf_s) &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 2 -->
+            <section id="step-2" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">STEP 2 · 사용자 입력</div>
+                    <h2>변수 선언과 안전한 정수 입력 (scanf_s)</h2>
+                    <p class="section-desc">
+                        키보드로 숫자를 입력받는 핵심 함수 <code>scanf_s</code>의 원리와 가장 많이 실수하는 주소 연산자(<code>&amp;</code>)를 완벽히 이해합니다.
+                    </p>
+
+                    <div class="concept-card highlight-border">
+                        <h3>⚠️ 절대 잊지 마세요! 주소 연산자 '&' (Ampersand)</h3>
+                        <p>
+                            <code>scanf_s</code>는 변수 자체가 아니라 <strong>변수가 저장된 메모리의 주소</strong>를 알아야 그 자리에 입력받은 값을 채워넣을 수 있습니다.
+                        </p>
+                        <div class="memory-diagram">
+                            <div class="mem-box">
+                                <div class="mem-label">변수명 score</div>
+                                <div class="mem-val">값: 80</div>
+                                <div class="mem-addr">메모리 주소: &amp;score (0x00FF...)</div>
+                            </div>
+                            <div class="mem-arrow">&larr; scanf_s가 찾아가는 곳!</div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="code-diff wrong">
+                            <h5>❌ 감점 1순위 (주소 연산자 누락 &rarr; 프로그램 강제 종료)</h5>
+                            <pre><code>int score = 0;
+scanf_s("%d", score); // & 누락! 컴파일 에러 또는 충돌</code></pre>
+                        </div>
+                        <div class="code-diff correct">
+                            <h5>✅ 만점 코드 (& 연산자 반드시 부착)</h5>
+                            <pre><code>int score = 0;
+scanf_s("%d", &score); // score의 메모리 주소를 전달!</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span>Step 2 실습 코드 (step2_scanf_s.c)</span>
+                            <button class="btn-copy" onclick="copyCode('code-step2')">코드 복사</button>
+                        </div>
+                        <pre><code id="code-step2">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    // 1. 입력받을 점수를 담을 정수형 변수 선언 및 초기화
+    int score = 0;
+
+    // 2. 프롬프트 출력
+    printf("성적 입력 하세요:");
+
+    // 3. scanf_s로 정수(%d) 입력받아 변수 score의 주소(&score)에 저장
+    scanf_s("%d", &score);
+
+    // 4. 정상 입력 확인
+    printf("입력 확인: 당신이 입력한 점수는 %d점 입니다.\n", score);
+
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="quiz-box" data-quiz="q2">
+                        <div class="quiz-title">❓ 퀴즈로 확인하기</div>
+                        <p>다음 중 정수형 변수 <code>val</code>에 정수를 안전하게 입력받는 올바른 코드는?</p>
+                        <div class="quiz-options">
+                            <button class="quiz-btn" onclick="checkQuiz('q2', 0)">scanf_s("%d", val);</button>
+                            <button class="quiz-btn" onclick="checkQuiz('q2', 1)" data-correct="true">scanf_s("%d", &amp;val);</button>
+                            <button class="quiz-btn" onclick="checkQuiz('q2', 2)">scanf_s("&amp;d", val);</button>
+                        </div>
+                        <div class="quiz-feedback" id="q2-feedback"></div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-prev" onclick="goToStep(1)">&larr; 이전</button>
+                        <button class="btn-next" onclick="goToStep(3)">다음 단계로 이동 (Step 3: 관계 연산자) &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 3 -->
+            <section id="step-3" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">STEP 3 · 논리 연산자</div>
+                    <h2>관계 연산자 (Relational Operators)의 세계</h2>
+                    <p class="section-desc">
+                        C언어에서 크기를 비교할 때 컴퓨터는 어떻게 판단할까요? 참(True)은 숫자 <strong>1</strong>, 거짓(False)은 숫자 <strong>0</strong>으로 계산됩니다.
+                    </p>
+
+                    <div class="table-responsive">
+                        <table class="operator-table">
+                            <thead>
+                                <tr>
+                                    <th>연산자</th>
+                                    <th>의미</th>
+                                    <th>C언어 표현</th>
+                                    <th>주의사항</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row">
+                                    <td><code>&gt;=</code></td>
+                                    <td><strong>크거나 같다 (이상)</strong></td>
+                                    <td><code>score &gt;= 80</code></td>
+                                    <td>⚠️ <code>=&gt;</code> 형태로 쓰면 컴파일 에러!</td>
+                                </tr>
+                                <tr>
+                                    <td><code>&lt;=</code></td>
+                                    <td>작거나 같다 (이하)</td>
+                                    <td><code>score &lt;= 60</code></td>
+                                    <td>⚠️ <code>=&lt;</code> 형태로 쓰면 에러!</td>
+                                </tr>
+                                <tr>
+                                    <td><code>&gt;</code></td>
+                                    <td>크다 (초과)</td>
+                                    <td><code>score &gt; 80</code></td>
+                                    <td>80점을 포함하지 않음</td>
+                                </tr>
+                                <tr>
+                                    <td><code>&lt;</code></td>
+                                    <td>작다 (미만)</td>
+                                    <td><code>score &lt; 80</code></td>
+                                    <td>80점을 포함하지 않음</td>
+                                </tr>
+                                <tr>
+                                    <td><code>==</code></td>
+                                    <td>같다</td>
+                                    <td><code>score == 100</code></td>
+                                    <td>⚠️ 대입(<code>=</code>)과 비교(<code>==</code>) 구분 필수!</td>
+                                </tr>
+                                <tr>
+                                    <td><code>!=</code></td>
+                                    <td>같지 않다 (다르다)</td>
+                                    <td><code>score != 0</code></td>
+                                    <td>느낌표가 부정(NOT)을 의미</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="concept-card">
+                        <h3>💡 관계 연산의 결과는 '숫자 1 또는 0'</h3>
+                        <p>컴퓨터 내부에서 조건식 <code>(score >= 80)</code>은 그 자체로 계산되어, 참이면 <code>1</code>, 거짓이면 <code>0</code>이 됩니다.</p>
+                        <div class="code-wrapper">
+                            <div class="code-header">
+                                <span>Step 3 실습 코드 (step3_relational_operator.c)</span>
+                                <button class="btn-copy" onclick="copyCode('code-step3')">코드 복사</button>
+                            </div>
+                            <pre><code id="code-step3">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int score = 85;
+    int isPass = 0;
+
+    // 85는 80 이상이므로 참(1)이 변수에 들어갑니다.
+    isPass = (score >= 80);
+
+    printf("85점은 80점 이상인가? 결과값: %d (1은 참, 0은 거짓)\n", isPass);
+
+    score = 65;
+    isPass = (score >= 80);
+    printf("65점은 80점 이상인가? 결과값: %d (1은 참, 0은 거짓)\n", isPass);
+
+    return 0;
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-prev" onclick="goToStep(2)">&larr; 이전</button>
+                        <button class="btn-next" onclick="goToStep(4)">다음 단계로 이동 (Step 4: if ~ else) &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 4 -->
+            <section id="step-4" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">STEP 4 · 조건 분기문</div>
+                    <h2>조건에 따른 갈림길 (if ~ else) 완벽 정복</h2>
+                    <p class="section-desc">
+                        조건식이 <strong>참(1)</strong>일 때는 합격 문구를, <strong>거짓(0)</strong>일 때는 불합격 문구를 출력하는 양자택일 제어문입니다.
+                    </p>
+
+                    <div class="logic-flowchart">
+                        <div class="flow-step">조건식: <code>score &gt;= 기준점수</code></div>
+                        <div class="flow-branches">
+                            <div class="branch branch-true">
+                                <span class="tag-branch">참 (True / 1)</span>
+                                <div class="branch-content">
+                                    <code>if { ... }</code> 블록 실행<br>
+                                    <strong>"합격을 축하합니다!"</strong>
+                                </div>
+                            </div>
+                            <div class="branch branch-false">
+                                <span class="tag-branch">거짓 (False / 0)</span>
+                                <div class="branch-content">
+                                    <code>else { ... }</code> 블록 실행<br>
+                                    <strong>"불합격입니다 화이팅!!"</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept-card danger-zone">
+                        <h3>🚨 흔히 빠지는 함정: if 문 뒤의 세미콜론(;)</h3>
+                        <div class="comparison-grid">
+                            <div class="code-diff wrong">
+                                <h5>❌ 세미콜론 실수 (조건과 상관없이 무조건 실행됨)</h5>
+                                <pre><code>if (score >= 80); // &lt;-- 세미콜론을 찍으면 if문이 여기서 끝남!
+{
+    printf("합격을 축하합니다!\n");
+}</code></pre>
+                            </div>
+                            <div class="code-diff correct">
+                                <h5>✅ 올바른 작성 (소괄호 뒤에 세미콜론 없음)</h5>
+                                <pre><code>if (score >= 80) // 세미콜론 없이 바로 중괄호 시작
+{
+    printf("합격을 축하합니다!\n");
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-wrapper">
+                        <div class="code-header">
+                            <span>Step 4 실습 코드 (step4_if_else.c)</span>
+                            <button class="btn-copy" onclick="copyCode('code-step4')">코드 복사</button>
+                        </div>
+                        <pre><code id="code-step4">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int score = 0;
+
+    printf("성적 입력 하세요:");
+    scanf_s("%d", &score);
+
+    // if-else 양자택일 조건 분기
+    if (score >= 80)
+    {
+        // 80점 이상인 경우
+        printf("합격을 축하합니다!\n");
+    }
+    else
+    {
+        // 80점 미만인 경우
+        printf("불합격입니다 화이팅!!\n");
+    }
+
+    return 0;
+}</code></pre>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-prev" onclick="goToStep(3)">&larr; 이전</button>
+                        <button class="btn-next" onclick="goToStep(5)">다음 단계로 이동 (Step 5: 종합 실전 과제) &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 5 -->
+            <section id="step-5" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">STEP 5 · 종합 실전 프로젝트</div>
+                    <h2>[최종 미션] 마이스터 스마트 합격 판정기 완성하기</h2>
+                    <p class="section-desc">
+                        Step 0부터 Step 4까지 배운 내용을 하나로 통합하여 수행평가 만점 프로그램을 완성해 봅시다. 타 반 기출 변형 기준(60점, 75점, 80점, 85점)에 모두 대비할 수 있습니다.
+                    </p>
+
+                    <div class="mission-guide">
+                        <h3>📋 미션 수행 요구사항</h3>
+                        <ol class="rule-list">
+                            <li><strong>프로젝트 생성</strong>: 바탕화면에 <code>동마고10101성명</code> 이름으로 생성</li>
+                            <li><strong>소스 파일</strong>: <code>수행평가3.c</code></li>
+                            <li><strong>주석</strong>: 상단에 본인 학번, 이름, 프로그램 설명을 주석으로 기록</li>
+                            <li><strong>변수 선언 및 입력</strong>: <code>int score;</code> 및 <code>scanf_s("%d", &amp;score);</code> 작성</li>
+                            <li><strong>조건 분기</strong>: 우리 반 기준 점수(예: 80점) 이상이면 합격문구, 미만이면 불합격문구 출력</li>
+                            <li><strong>출력 양식 정밀 일치</strong>:
+                                <div class="console-preview">
+                                    <div class="console-line">성적 입력 하세요:90</div>
+                                    <div class="console-line highlight-green">합격을 축하합니다!</div>
+                                    <div class="console-line">성적 입력 하세요:70</div>
+                                    <div class="console-line highlight-yellow">불합격입니다 화이팅!!</div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Code Challenge Tabs -->
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" onclick="switchChallengeTab('template')">✏️ 빈칸 채우기 템플릿</button>
+                            <button class="tab-btn" onclick="switchChallengeTab('solution')">✨ 모범 답안 (정답 확인)</button>
+                            <button class="tab-btn" onclick="switchChallengeTab('variations')">🔄 반별 기준점수 변형 팁</button>
+                        </div>
+
+                        <!-- Template Tab -->
+                        <div id="tab-template" class="tab-content active">
+                            <div class="code-wrapper">
+                                <div class="code-header">
+                                    <span>도전 과제 템플릿 (스스로 완성해 보세요)</span>
+                                    <button class="btn-copy" onclick="copyCode('code-step5-challenge')">코드 복사</button>
+                                </div>
+                                <pre><code id="code-step5-challenge">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    // [1] 주석 달기: 학번과 이름을 적으세요 (조건 4)
+    // 학번: 10101  이름: 홍길동
+
+    // [2] 점수를 저장할 정수형 변수를 선언하고 0으로 초기화하세요
+    int score = 0;
+
+    // [3] 줄바꿈 없이 "성적 입력 하세요:" 프롬프트를 출력하세요 (조건 6)
+    // 힌트: printf("...");
+
+
+    // [4] scanf_s로 정수를 안전하게 입력받으세요 (힌트: & 기호 필수!)
+    // 힌트: scanf_s("%d", &score);
+
+
+    // [5] if ~ else 문으로 합격/불합격을 판정하여 출력하세요 (조건 5)
+    // 기준 점수(예: 80점) 이상이면 합격, 미만이면 불합격
+    /*
+    if (score >= 80)
+    {
+        printf("합격을 축하합니다!\n");
+    }
+    else
+    {
+        printf("불합격입니다 화이팅!!\n");
+    }
+    */
+
+    return 0;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Solution Tab -->
+                        <div id="tab-solution" class="tab-content">
+                            <div class="code-wrapper">
+                                <div class="code-header">
+                                    <span>만점 모범 답안 (step5_solution_sample.c)</span>
+                                    <button class="btn-copy" onclick="copyCode('code-step5-sol')">코드 복사</button>
+                                </div>
+                                <pre><code id="code-step5-sol">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    // [조건4] 학생 정보 및 프로그램 의도를 주석으로 기술
+    // 작성자: 1학년 7반 1번 김동마
+    // 프로그램: 점수 입력 및 합격/불합격 판정 프로그램
+
+    // 정수형 변수 선언 및 초기화
+    int score = 0;
+
+    // [조건6] 출력 디자인 준수: 줄바꿈 없이 프롬프트 출력
+    printf("성적 입력 하세요:");
+
+    // [조건6] scanf_s를 사용한 안전한 정수 입력 (& 주소 연산자 필수)
+    scanf_s("%d", &score);
+
+    // [조건5] 관계연산자(>=)와 if-else 문을 활용한 분기 처리
+    if (score >= 80)
+    {
+        // 80점 이상 합격 문구
+        printf("합격을 축하합니다!\n");
+    }
+    else
+    {
+        // 80점 미만 불합격 문구
+        printf("불합격입니다 화이팅!!\n");
+    }
+
+    return 0;
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Variations Tab -->
+                        <div id="tab-variations" class="tab-content">
+                            <div class="info-card">
+                                <h4>🏫 다른 반 기출문제는 기준 점수가 어떻게 달랐을까?</h4>
+                                <p>각 반마다 합격 기준 수치만 다르게 출제되었습니다. 시험 당일 선생님이 제시하는 숫자를 확인하고 <strong>조건식의 숫자만 정확히 변경</strong>하면 됩니다!</p>
+                                <ul>
+                                    <li><strong>3-5반 기출</strong>: 60점 이상 &rarr; <code>if (score >= 60)</code></li>
+                                    <li><strong>3-7반 기출</strong>: 80점 이상 &rarr; <code>if (score >= 80)</code></li>
+                                    <li><strong>3-8반 기출</strong>: 75점 이상 &rarr; <code>if (score >= 75)</code></li>
+                                    <li><strong>3-9반 기출</strong>: 85점 이상 &rarr; <code>if (score >= 85)</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-prev" onclick="goToStep(4)">&larr; 이전</button>
+                        <button class="btn-highlight" onclick="goToSimulator()">⚡ 가상 콘솔 시뮬레이터로 결과 직접 확인하기 &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SIMULATOR SECTION -->
+            <section id="step-sim" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">INTERACTIVE TOOL · 실시간 시뮬레이션</div>
+                    <h2>웹 브라우저 C언어 콘솔 시뮬레이터</h2>
+                    <p class="section-desc">
+                        Visual Studio를 켜지 않아도, 여기서 직접 기준 점수와 성적을 입력하고 실행하여 C 프로그램이 어떻게 동작하는지 눈으로 확인할 수 있습니다.
+                    </p>
+
+                    <div class="simulator-container">
+                        <div class="sim-controls">
+                            <div class="control-group">
+                                <label for="simCutoff">합격 기준 점수 (Cut-off):</label>
+                                <select id="simCutoff" class="sim-select" onchange="runSimPreview()">
+                                    <option value="80" selected>80점 (3-7반 기출 기준)</option>
+                                    <option value="60">60점 (3-5반 기출 기준)</option>
+                                    <option value="75">75점 (3-8반 기출 기준)</option>
+                                    <option value="85">85점 (3-9반 기출 기준)</option>
+                                    <option value="custom">직접 지정</option>
+                                </select>
+                                <input type="number" id="simCustomCutoff" class="sim-input-inline hidden" placeholder="기준점수" value="70">
+                            </div>
+
+                            <div class="control-group">
+                                <label for="simScoreInput">학생 점수 입력:</label>
+                                <input type="number" id="simScoreInput" class="sim-input" placeholder="예: 90 또는 65" value="90">
+                            </div>
+
+                            <button id="btnRunSim" class="btn-sim-run" onclick="runSimExecution()">▶ 프로그램 실행 (Run)</button>
+                        </div>
+
+                        <!-- Virtual Terminal -->
+                        <div class="terminal-window">
+                            <div class="terminal-bar">
+                                <div class="term-dots">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                </div>
+                                <div class="term-title">C:\Users\Desktop\동마고10101홍길동\x64\Debug\수행평가3.exe</div>
+                            </div>
+                            <div class="terminal-screen" id="termScreen">
+                                <div class="term-line term-dim">// Visual Studio 실행 결과 가상 콘솔</div>
+                                <div class="term-line" id="termLinePrompt">성적 입력 하세요:<span id="termScoreEcho" class="term-echo">90</span></div>
+                                <div class="term-line term-bold" id="termLineResult">합격을 축하합니다!</div>
+                                <div class="term-line term-dim">C:\Users\Desktop\...\수행평가3.exe(프로세스 12345개)이(가) 종료되었습니다(코드: 0).</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-prev" onclick="goToStep(5)">&larr; Step 5 도전 과제로 돌아가기</button>
+                        <button class="btn-highlight" onclick="goToChecklist()">🛡️ 6대 감점 방지 체크리스트 검사하기 &rarr;</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHECKLIST SECTION -->
+            <section id="step-check" class="step-section">
+                <div class="section-card">
+                    <div class="card-badge">QUALITY GUARD · 제출 전 자가 진단</div>
+                    <h2>수행평가 6대 감점 방지 체크리스트 (24점 만점 도전)</h2>
+                    <p class="section-desc">
+                        시험 종료 종이 울리기 전, 아래 6개 항목을 내 코드와 하나씩 비교하며 체크하세요. 조건 1개당 <strong>-2점 감점</strong>을 사전에 완벽히 차단합니다.
+                    </p>
+
+                    <div class="score-summary">
+                        <div class="score-circle">
+                            <span class="score-num" id="currentScore">24</span>
+                            <span class="score-max">/ 24점</span>
+                        </div>
+                        <div class="score-status">
+                            <h4 id="scoreTitle">🎉 완벽합니다! 만점(24점) 예상</h4>
+                            <p id="scoreDesc">모든 조건을 충족하여 감점 요인이 없습니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="checklist-items">
+                        <label class="check-item">
+                            <input type="checkbox" class="chk-cond" data-id="c1" checked onchange="updateScore()">
+                            <span class="check-box-custom"></span>
+                            <div class="check-text">
+                                <strong>조건 1: 프로젝트명 명명 규칙 준수 (감점 -2점)</strong>
+                                <p>프로젝트명을 <code>동마고10101성명</code> (학번+본인이름) 형태로 정확히 작성했는가?</p>
+                            </div>
+                        </label>
+
+                        <label class="check-item">
+                            <input type="checkbox" class="chk-cond" data-id="c2" checked onchange="updateScore()">
+                            <span class="check-box-custom"></span>
+                            <div class="check-text">
+                                <strong>조건 2: 바탕화면(Desktop)에 프로젝트 생성 (감점 -2점)</strong>
+                                <p>임의의 드라이브나 내 문서가 아닌 바탕화면에 프로젝트 폴더가 위치해 있는가?</p>
+                            </div>
+                        </label>
+
+                        <label class="check-item">
+                            <input type="checkbox" class="chk-cond" data-id="c3" checked onchange="updateScore()">
+                            <span class="check-box-custom"></span>
+                            <div class="check-text">
+                                <strong>조건 3: 소스 파일명 '수행평가3.c' 작성 (감점 -2점)</strong>
+                                <p><code>.cpp</code> 확장자가 아닌 C언어 전용 확장자 <code>수행평가3.c</code>로 저장되었는가?</p>
+                            </div>
+                        </label>
+
+                        <label class="check-item">
+                            <input type="checkbox" class="chk-cond" data-id="c4" checked onchange="updateScore()">
+                            <span class="check-box-custom"></span>
+                            <div class="check-text">
+                                <strong>조건 4: 코드 내 의미 있는 주석 작성 (감점 -2점)</strong>
+                                <p>상단 작성자 정보와 핵심 코드(변수, 입력, 조건문)에 <code>//</code> 주석을 달았는가?</p>
+                            </div>
+                        </label>
+
+                        <label class="check-item">
+                            <input type="checkbox" class="chk-cond" data-id="c5" checked onchange="updateScore()">
+                            <span class="check-box-custom"></span>
+                            <div class="check-text">
+                                <strong>조건 5: 기준 점수 이상 합격, 미만 불합격 판정 (감점 -2점)</strong>
+                                <p><code>>=</code> 관계 연산자를 사용하고 <code>if ~ else</code>로 양방향 분기를 올바르게 처리했는가?</p>
+                            </div>
+                        </label>
+
+                        <label class="check-item">
+                            <input type="checkbox" class="chk-cond" data-id="c6" checked onchange="updateScore()">
+                            <span class="check-box-custom"></span>
+                            <div class="check-text">
+                                <strong>조건 6: 출력 화면 띄어쓰기, 문구, 디자인 일치 (감점 -2점)</strong>
+                                <p><code>성적 입력 하세요:</code> (콜론 앞 공백/줄바꿈 없음), <code>합격을 축하합니다!</code>, <code>불합격입니다 화이팅!!</code> 문구가 완벽히 동일한가?</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="section-footer">
+                        <button class="btn-highlight" onclick="goToStep(0)">🔄 처음부터 다시 복습하기</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">클립보드에 코드가 복사되었습니다!</div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

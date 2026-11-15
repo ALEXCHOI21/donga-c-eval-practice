@@ -1,0 +1,15 @@
+# OS Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDE & Temporary Files
+.vscode/
+.vs/
+*.obj
+*.exe
+*.pdb
+*.ilk
+99_temp/
